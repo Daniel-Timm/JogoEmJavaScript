@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    color-scheme: light;
+}
+
+.gameBoard{
+    color-scheme: light;
+    width: 80%;
+    height: 500px;
+    border-bottom:  20px solid rgb(6, 80, 34);
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(#14bdd3, #ffffff);
+    
+}
+.tubo{
+   position: absolute;
+   bottom: 0;
+   width: 80px;
+    
+   
+  animation: tuboAnimacao 1s infinite linear;
+}
+.nuvens{
+    position: absolute;
+    width: 690px;
+    height: 200px;
+    animation: nuvensAnimation 25s infinite linear;
+}
+
+.mario{
+    position: absolute;
+    bottom: 0;
+    width: 150px;
+}
+
+.jump{
+    animation: jump 500ms ease-out;
+
+}
+
+@keyframes nuvensAnimation {
+    from {
+        right: -500px;
+    }
+
+    to {
+       right: 100%;
+    }
+}
+
+@keyframes tuboAnimacao {
+    from {
+        right: -80px;
+    }
+
+    to {
+       right: 100%;
+    }
+}
+
+@keyframes jump {
+    0%{
+        bottom: 0;
+    }
+    40%{
+        bottom: 180px;
+    }
+
+    50%{
+        bottom: 180px;
+    }
+    60%{
+        bottom: 180px;
+    }
+    65%{
+        bottom: 180px;
+    }
+
+    100%{
+        bottom: 0;
+    }
+}
