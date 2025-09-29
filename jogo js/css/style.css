@@ -19,6 +19,7 @@ body{
     background: linear-gradient(#14bdd3, #ffffff);
     
 }
+
 .tubo{
    position: absolute;
    bottom: 0;
@@ -87,3 +88,8 @@ body{
         bottom: 0;
     }
 }
+
+.GameOver{
+    display: none;
+}
+
