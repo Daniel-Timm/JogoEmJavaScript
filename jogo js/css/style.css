@@ -13,7 +13,7 @@ body{
     color-scheme: light;
     width: 80%;
     height: 500px;
-    border-bottom:  20px solid rgb(6, 80, 34);
+    border-bottom:  30px solid rgb(24, 145, 8);
     margin: 0 auto;
     position: relative;
     overflow: hidden;
@@ -45,7 +45,7 @@ body{
     bottom: 250px;
     left: 300px;
     border-radius: 10px;
-    background-color: rgb(23, 105, 27);
+    background: linear-gradient(#10dbb9, #530daf);
     color: #ffffff;
     text-decoration: ;
     font-size: x-large;
@@ -76,7 +76,7 @@ body{
 
 @keyframes nuvensAnimation {
     from {
-        right: -500px;
+        right: -700px;
     }
 
     to {
