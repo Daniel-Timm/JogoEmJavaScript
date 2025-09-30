@@ -5,6 +5,8 @@ const GameOverScreen = document.querySelector(".GameOver");
 const RestartButton = document.querySelector(".RestartButton");
 const tubo = document.querySelector (".tubo");
 
+tubo.style.setProperty('--tubo-speed', '2s'); 
+
 // Variável global para controlar o loop
 let loopId; 
 
@@ -23,6 +25,18 @@ const startGameLoop = () => {
     // Atribui o intervalo à variável global 'loopId'
     loopId = setInterval (() => {
         
+        if (score % 10 === 0 && score > 0) {
+    
+    const velocidadeAtualString = getComputedStyle(tubo).getPropertyValue("--tubo-speed");
+    let novaVelocidadeNumero = parseFloat(velocidadeAtualString.replace('s', '')) - 0.0010; 
+    
+    if (novaVelocidadeNumero < 0.6){
+        novaVelocidadeNumero = 0.6;
+    }
+
+    tubo.style.setProperty('--tubo-speed', novaVelocidadeNumero + 's');
+}
+
         score++;
         elementoPontuacao.innerText = `Score: ${score.toString().padStart(2,'0')}`;
 
@@ -30,7 +44,7 @@ const startGameLoop = () => {
         const tuboPosition = tubo.offsetLeft;
         
         // Lógica de COLISÃO
-        if (tuboPosition <= 120 && tuboPosition > 0 && marioPosition < 100){
+        if (tuboPosition <= 120 && tuboPosition > 0 && marioPosition < 60){
 
             GameOverScreen.style.display = 'block';
 
@@ -53,7 +67,7 @@ const startGameLoop = () => {
 }
 // ----------------------------------------------------
 
-// Função que reseta todos os estilos e reinicia o jogo
+// Recomeço
 const restartGame = () => {
     
     GameOverScreen.style.display = 'none';
@@ -66,6 +80,7 @@ const restartGame = () => {
     tubo.style.left = '';
     score = 0; 
     elementoPontuacao.innerText = `Score: ${score.toString().padStart(2, '0')}`;
+    tubo.style.setProperty('--tubo-speed', '2s');
     
     // 1. RE-HABILITA o pulo
     document.addEventListener("keydown", jump);
