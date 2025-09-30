@@ -8,6 +8,7 @@ body{
     color-scheme: light;
 }
 
+
 .gameBoard{
     color-scheme: light;
     width: 80%;
@@ -28,6 +29,30 @@ body{
    
   animation: tuboAnimacao 1s infinite linear;
 }
+
+.pontuacao h2{
+    color: #5108c5;
+    font-size: xx-large;
+    margin-left: 12px;
+}
+
+.RestartButton{
+    width: 30%;
+    height: 30px;
+    position: absolute;
+    bottom: 250px;
+    left: 400px;
+    border-radius: 10px;
+    background-color: rgb(23, 105, 27);
+    color: #5108c5;
+    font-size: x-large;
+    text-transform: uppercase;
+    text-decoration: wavy;
+    box-shadow: rgba(0, 0, 0, 0.5) 6px 6px 6px;
+    border: 1px solid #780ccf;
+    
+}
+
 .nuvens{
     position: absolute;
     width: 690px;
