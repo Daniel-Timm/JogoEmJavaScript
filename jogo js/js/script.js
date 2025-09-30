@@ -16,9 +16,9 @@ const jump = () => {
     }, 500);
 }
 
-// ----------------------------------------------------
+
 // Função principal que inicia e executa o jogo
-// ----------------------------------------------------
+
 const startGameLoop = () => {
     // Atribui o intervalo à variável global 'loopId'
     loopId = setInterval (() => {
@@ -74,9 +74,9 @@ const restartGame = () => {
     startGameLoop(); 
 };
 
-// ----------------------------------------------------
+
 // Inicialização do Jogo
-// ----------------------------------------------------
+
 
 // Inicia o jogo automaticamente
 startGameLoop();
