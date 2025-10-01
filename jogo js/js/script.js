@@ -4,8 +4,24 @@ let score = 0;
 const GameOverScreen = document.querySelector(".GameOver");
 const RestartButton = document.querySelector(".RestartButton");
 const tubo = document.querySelector (".tubo");
+const telaStart = document.querySelector (".StartScreen");
+const botaoInicio = document.querySelector(".StartButton");
 
 tubo.style.setProperty('--tubo-speed', '2s'); 
+
+
+//Aqui esta a tela de inicio~
+const handleStartGame = () => {
+    
+    telaStart.style.display = "none";
+
+    document.addEventListener('keydown', handleJump);
+    
+    startGameLoop();
+}
+
+
+
 
 // Variável global para controlar o loop
 let loopId; 
@@ -17,7 +33,17 @@ const jump = () => {
         mario.classList.remove("jump");
     }, 500);
 }
-
+//Pulo apenas em Space e SétaUp~
+const handleJump = (event) => {
+    
+    if (event.key === " " || event.key === "ArrowUp") { 
+        
+        
+        if (!mario.classList.contains("jump")) {
+            jump();
+        }
+    }
+};
 
 // Função principal que inicia e executa o jogo
 
@@ -27,40 +53,40 @@ const startGameLoop = () => {
         
         if (score % 10 === 0 && score > 0) {
     
-    const velocidadeAtualString = getComputedStyle(tubo).getPropertyValue("--tubo-speed");
-    let novaVelocidadeNumero = parseFloat(velocidadeAtualString.replace('s', '')) - 0.0010; 
-    
-    if (novaVelocidadeNumero < 0.6){
-        novaVelocidadeNumero = 0.6;
+            const velocidadeAtualString = getComputedStyle(tubo).getPropertyValue("--tubo-speed");
+            let novaVelocidadeNumero = parseFloat(velocidadeAtualString.replace('s', '')) - 0.0010; 
+            
+            if (novaVelocidadeNumero < 0.6){
+                novaVelocidadeNumero = 0.6;
     }
-
+    
     tubo.style.setProperty('--tubo-speed', novaVelocidadeNumero + 's');
 }
 
-        score++;
-        elementoPontuacao.innerText = `Score: ${score.toString().padStart(2,'0')}`;
+score++;
+elementoPontuacao.innerText = `Score: ${score.toString().padStart(2,'0')}`;
 
-        const marioPosition = parseInt(window.getComputedStyle(mario).bottom);
-        const tuboPosition = tubo.offsetLeft;
-        
+const marioPosition = parseInt(window.getComputedStyle(mario).bottom);
+const tuboPosition = tubo.offsetLeft;
+
         // Lógica de COLISÃO
         if (tuboPosition <= 120 && tuboPosition > 0 && marioPosition < 60){
-
+            
             GameOverScreen.style.display = 'block';
-
+            
             tubo.style.animation = 'none';
             tubo.style.left = `${tuboPosition}px`;
-
+            
             mario.style.animation = 'none';
             mario.style.bottom = `${marioPosition}px`;
 
             mario.src = "imgs/game-over.png";
             mario.style.width = '80px';
             mario.style.marginLeft = '50px';
-
-            document.removeEventListener('keydown', jump);
             
-            // Para o loop usando a variável correta
+            document.removeEventListener('keydown', handleJump);
+            
+            // Para o loop 
             clearInterval(loopId); 
         }
     } , 10);
@@ -82,22 +108,16 @@ const restartGame = () => {
     elementoPontuacao.innerText = `Score: ${score.toString().padStart(2, '0')}`;
     tubo.style.setProperty('--tubo-speed', '2s');
     
-    // 1. RE-HABILITA o pulo
-    document.addEventListener("keydown", jump);
+    // RE-HABILITA o pulo
+    document.addEventListener("keydown", handleJump);
     
-    // 2. REINICIA o loop do jogo
+    // REINICIA o loop do jogo
     startGameLoop(); 
 };
 
 
 // Inicialização do Jogo
-
-
-// Inicia o jogo automaticamente
-startGameLoop();
-
-// Adiciona o controle de pulo inicial
-document.addEventListener('keydown', jump); 
+botaoInicio.addEventListener("click", handleStartGame); 
 
 // Liga o botão de reinício à função
 RestartButton.addEventListener("click", restartGame);
