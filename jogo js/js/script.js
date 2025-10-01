@@ -1,11 +1,23 @@
 const mario = document.querySelector (".mario");
+const tubo = document.querySelector (".tubo");
+
 const elementoPontuacao = document.querySelector(".pontuacao h2");
 let score = 0;
+//ReStart
 const GameOverScreen = document.querySelector(".GameOver");
 const RestartButton = document.querySelector(".RestartButton");
-const tubo = document.querySelector (".tubo");
+
+//start
 const telaStart = document.querySelector (".StartScreen");
 const botaoInicio = document.querySelector(".StartButton");
+
+//Recorde
+const elementoRecorde = document.querySelector(".recorde h2")
+const highScoreSalvo = localStorage.getItem('highScore') || '0';
+
+
+elementoRecorde.innerText = `Recorde: ${ (parseInt(highScoreSalvo)).toString().padStart(2,'0') }`;
+
 
 tubo.style.setProperty('--tubo-speed', '2s'); 
 
@@ -73,6 +85,14 @@ const tuboPosition = tubo.offsetLeft;
         if (tuboPosition <= 120 && tuboPosition > 0 && marioPosition < 60){
             
             GameOverScreen.style.display = 'block';
+            if (+score > +highScoreSalvo) {
+    
+           // 1. SALVA O NOVO RECORDE (O localStorage só armazena texto)
+           localStorage.setItem('highScore', score.toString());
+
+           // 2. ATUALIZA A TELA DO RECORDE IMEDIATAMENTE
+            elementoRecorde.innerText = `Recorde: ${score.toString().padStart(2, '0')}`;
+         }
             
             tubo.style.animation = 'none';
             tubo.style.left = `${tuboPosition}px`;
