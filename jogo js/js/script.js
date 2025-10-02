@@ -1,6 +1,9 @@
 const mario = document.querySelector (".mario");
 const tubo = document.querySelector (".tubo");
 
+//https://www.youtube.com/watch?v=Nm6vfrLrGs8
+//https://youtu.be/qBSB5H7mCGo
+
 const elementoPontuacao = document.querySelector(".pontuacao h2");
 let score = 0;
 //ReStart
@@ -140,4 +143,5 @@ const restartGame = () => {
 botaoInicio.addEventListener("click", handleStartGame); 
 
 // Liga o botão de reinício à função
+
 RestartButton.addEventListener("click", restartGame);
